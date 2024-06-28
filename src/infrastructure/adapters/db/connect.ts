@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export const connectDB = async () => {
     const dbUrl = process.env.DATABASE_URL_TEST;
     if(!dbUrl){
-        console.log(dbUrl+' DATABASEis not defined in the environment variables')
+        console.log(dbUrl+' DATABASE is not defined in the environment variables')
         process.exit(1);
     }
   try {

@@ -9,7 +9,6 @@ const startServer = () => {
   // Configurar WebSocket
   //setupWebSocket(server);
 
-  // Arrancar el servidor HTTP
   server.listen(port, () => {
     console.log(`Server running on port: ${port}`);
   });
