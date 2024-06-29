@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES6",                       // Target es ES6, lo que es adecuado para la mayoría de los proyectos
-    "module": "commonjs",                  // Módulo es commonjs, adecuado para Node.js
-    "rootDir": "./src",                    // Directorio raíz de los archivos fuente
-    "outDir": "./dist",                    // Directorio de salida para archivos compilados
-    "strict": true,                        // Habilita todas las verificaciones de tipo estrictas
-    "esModuleInterop": true,               // Habilita la interoperabilidad entre módulos ES y CommonJS
-    "skipLibCheck": true,                  // Omite la verificación de archivos de definición de tipo de la biblioteca
-    "forceConsistentCasingInFileNames": true, // Asegura que los archivos tengan un casing consistente
-    "strictPropertyInitialization": false, // Esto puede ser necesario si usas Mongoose y otros ORMs
-    "resolveJsonModule": true              // Permite importar módulos JSON
+    "target": "ES6",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts"],              // Incluye todos los archivos TypeScript en src
-  "exclude": ["node_modules"]              // Excluye el directorio node_modules
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
