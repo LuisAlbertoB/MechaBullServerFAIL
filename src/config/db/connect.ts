@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
 
 export const connectDB = async () => {
-    const dbUrl = process.env.DATABASE_URL_TEST;
+    const dbUrl = process.env.NODE_ENV === 'test' ? process.env.DATABASE_URL_TEST : process.env.DATABASE_URL;
     if(!dbUrl){
         console.log(dbUrl+' DATABASE is not defined in the environment variables')
         process.exit(1);
     }
   try {
     await mongoose.connect(dbUrl)
-    console.log('Database connected successfully');
+    const environment = process.env.NODE_ENV === 'test' ? 'TEST' : 'PRODUCCIÓN';
+    console.log(`Database connected successfully to ${environment} `);
   } catch (error) {
     console.error('Database connection failed:', error);
     process.exit(1);

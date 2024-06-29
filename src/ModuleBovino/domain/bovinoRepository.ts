@@ -1,6 +1,12 @@
 import { Bovino } from './bovino'
-
+import { UpdateBovinoData } from './types/typesBovino';
 export interface BovinoRepository {
-    createBovino(bovinoName: string, bovinoSiniga: string, bovinoAge: number): Promise<Bovino>;
-    //getBovino(bovinoID: number, bovinoName: string, bovinoSiniga: string, bovinoAge: number, bovinoLPM: number, bovinoAverage: number, bovinoLocation: number): Promise<Bovino> | null;
+    getAllBovinos(): Promise<Bovino[]|null>;
+    getBovino(name:string): Promise<Bovino | null>;
+    
+    createBovino(name: string, siniga: string, age: number): Promise<Bovino>;
+    checkRepit(name:string):Promise<Bovino | null>
+    putBovino(name:string, updateData: UpdateBovinoData):Promise<Bovino | null>
+    deleteBovino(name:string):Promise<Bovino | null>
+    deleteAllBovinos():Promise<{deleteCount:number} | null>
 }

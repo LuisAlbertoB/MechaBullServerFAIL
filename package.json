@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/index.js",
+    "start": "NODE_ENV=test node dist/index.js",
     "dev": "npm run build && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

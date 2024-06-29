@@ -7,13 +7,13 @@ export class Bovino {
     private averageSteps:number;
     private location:number;
 
-    constructor(name:string, siniga:string, age:number,){
+    constructor(id: string, name:string, siniga:string, age:number, lpm:number, averageSteps:number, location:number){
+        this.id = id;
         this.name = name;
         this.siniga = siniga;
         this.age = age;
+        this.lpm = lpm;
+        this.averageSteps = averageSteps;
+        this.location = location;
     }
-    getName(): string {
-        return this.name;
-    }
-
 }
