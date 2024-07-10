@@ -32,7 +32,17 @@ export class setupWebSocket{
                 const checkTokenInterval = setInterval(() => {
                     const currentTime = Date.now() / 1000;
                     if (decoded.exp && currentTime > decoded.exp) {
-                        ws.close(1008, 'Token expired');
+                        setTimeout(() => {
+                            console.log("el token caduco")
+                            const message = {
+                                event: 'token-expired',
+                                message: 'El token de autenticación expiró.'
+                            };
+                            ws.send(JSON.stringify(message));
+                            ws.close(1008, 'Token expired');
+                            this.connectedClients--;
+                        }, 5000);
+                        
                         clearInterval(checkTokenInterval);
                     }
                 }, 1000);

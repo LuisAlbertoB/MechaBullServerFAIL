@@ -10,4 +10,10 @@ export class User {
         this.email = email;
         this.password = password;
     }
+    public getPublicUserData(): { id: string, username: string } {
+        return {
+          id: this.id,
+          username: this.username
+        };
+    }
 }

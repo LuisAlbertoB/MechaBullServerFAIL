@@ -2,19 +2,17 @@ import jwt from 'jsonwebtoken';
 import { currentSecretKey } from './secure/claves';
 
 const expires = {
-    expiresIn: '30s' // El token expirará en 30s
+    expiresIn: '30s'
 };
 
-// Función para generar un token JWT con la clave secreta actual
-export async function generarToken(): Promise<string> {
+export async function generarToken(id:string, username:string): Promise<string> {
     await esperaActualizacionSecretKey();
     const payload = {
-        userId: '123456',
-        username: 'ejemploUsuario',
+        userId: id,
+        username: username,
+        permission: 'client'
     };
-    const token = jwt.sign(payload, currentSecretKey, expires);
-    console.log("\nel toke del cliente: ",token,"\n")
-    return token
+    return jwt.sign(payload, currentSecretKey, expires);
 }
 async function esperaActualizacionSecretKey(): Promise<void> {
     return new Promise<void>((resolve) => {
@@ -35,6 +33,4 @@ export function verifyToken(token: string): any {
         throw new Error('Token inválido');
     }
 }
-
-generarToken()
 

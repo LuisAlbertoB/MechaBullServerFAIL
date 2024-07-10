@@ -5,9 +5,15 @@ export class WebSocketService {
         ws.on('message', (message: string) => {
             this.handleMessage(ws, message, user)
         });
-
-        // Enviar mensaje de bienvenida
-        ws.send(`¡Conexión establecida con ${user.username || 'usuario'}!`);
+        const client = {
+            id: user.userId,
+            username: user.username,
+            permission: user.permission
+        };
+        ws.send(JSON.stringify({
+            event: 'connect',
+            data: client
+        }));
     }
     handleMessage(ws: WebSocket, message: string, user: any) {
         console.log('Received message:', message, 'from user:', user);

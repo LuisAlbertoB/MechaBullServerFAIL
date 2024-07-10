@@ -24,9 +24,9 @@ export class DbUserRepository implements UserRepository {
         }
     }
 
-    async getUserByEmail(email: string): Promise<User | null> {
+    async getUserByUsername(username: string, password:string): Promise<User | null> {
         try {
-            const userDocument = await userModel.findOne({ email }).exec();
+            const userDocument = await userModel.findOne({ username, password }).exec();
             if (!userDocument) {
                 return null;
             }

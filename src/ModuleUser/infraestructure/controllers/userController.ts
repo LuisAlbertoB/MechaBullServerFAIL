@@ -3,6 +3,8 @@ import { CreateUserUseCase } from "../../application/createUserUseCase";
 import { GetUserUseCase } from "../../application/getUserUseCase";
 import { UpdateUserUseCase } from "../../application/updateUserUseCase";
 import { DeleteUserUseCase } from "../../application/deleteUserUseCase";
+import { generarToken } from "../auth/tokenManager";
+
 
 export class UserController {
     constructor(
@@ -10,19 +12,30 @@ export class UserController {
         private createUserUseCase: CreateUserUseCase,
         private updateUserUseCase: UpdateUserUseCase,
         private deleteUserUseCase: DeleteUserUseCase
+
+        
     ) {}
 
-    async getUser(req: Request, res: Response): Promise<void> {
-        const email = req.body.email;
-        if (!email) {
-            res.status(406).json({ message: "Email is required" });
+    async login(req: Request, res: Response): Promise<void> {
+        const { username, password } = req.body;
+        if (!username || !password) {
+            res.status(406).json({ message: "campos requeridos" });
             return;
         }
         try {
-            const user = await this.getUserUseCase.getUserByEmail(email);
-            res.json(user);
+            const userData = await this.getUserUseCase.getUserByEmail(username, password);
+            if (userData) {
+                const token = await generarToken(userData.id, userData.username);
+                res.status(200).json({token: token});
+                return;
+            }
         } catch (error: any) {
+            if(error.message === 'error-find-or-password'){
+                res.status(404).json({ message: "email-password-incorrect" });
+                return;
+            }
             res.status(500).json({ message: "Internal server error", error });
+            return;
         }
     }
 
