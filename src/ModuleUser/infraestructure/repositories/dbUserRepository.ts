@@ -1,11 +1,10 @@
 import { Model } from 'mongoose';
 import { User } from '../../domain/user';
 import { UserRepository } from '../../domain/userRepository';
-import { UserDocument, User as userModel} from '../mongoModels/userModel';
+import { User as userModel} from '../mongoModels/userModel';
 import { UpdateUserData } from '../../domain/types/typeUser';
 
 export class DbUserRepository implements UserRepository {
-    private userModel: Model<UserDocument>
     userRepository: DbUserRepository;
 
     async getAllUsers(): Promise<User[] | null> {

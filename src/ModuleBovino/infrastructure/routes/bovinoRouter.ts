@@ -9,3 +9,6 @@ bovinoRouter.post("/create", bovinoController.createBovino.bind(bovinoController
 bovinoRouter.put("/update-data/:name", bovinoController.updateBovino.bind(bovinoController));
 bovinoRouter.delete("/delete-bovino/:name", bovinoController.deleteBovino.bind(bovinoController));
 bovinoRouter.delete("/delete-all", bovinoController.deleteAllBovinos.bind(bovinoController));
+
+// Ejemplo de ruta para actualizar la relación con Lpm
+bovinoRouter.put("/assign-lpm/:bovinoId/:lpmId", bovinoController.assignLpm.bind(bovinoController));
